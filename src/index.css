@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.wallyImage{
+    width: 1920px;
+    height: 1080px;
+}
