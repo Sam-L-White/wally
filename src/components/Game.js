@@ -6,6 +6,8 @@ import {
     query,
     getDocs,
   } from 'firebase/firestore';
+import { Timer } from "./Timer";
+import { Leaderboard } from "./Leaderboard";
 
 const Game = () => {
 
@@ -15,6 +17,8 @@ const Game = () => {
         wizard: false,
         odlaw: false
     })
+    const [timerActive, setTimerActive] = useState(true)
+    const [gameFinished, setGameFinished] = useState(false)
 
     async function getCoordinates(db) {
         const coordinatesCol = collection(db, 'coordinates')
@@ -22,6 +26,13 @@ const Game = () => {
         const coordinatesList = coordinatesSnapshot.docs.map(doc => doc.data())
         return coordinatesList 
     }
+
+    useEffect(() => {
+        if(foundTracker.wally && foundTracker.wizard && foundTracker.odlaw){
+            setTimerActive(false)
+            setGameFinished(true)
+        }
+    }, [foundTracker.wally, foundTracker.wizard, foundTracker.odlaw, timerActive])
 
     const clickHandle = (e, character) => {
         let rect = sceneRef.current.getBoundingClientRect()
@@ -78,6 +89,8 @@ const Game = () => {
 
     return(
         <div className="flex flex-col place-items-center">
+            <Timer timerActive={timerActive}/>
+
             <ContextMenuTrigger mouseButton={0} id="wally-context">
                 <div className="relative">
                     <img className="wallyImage" src="/images/scene.jpg" alt="scene" ref={sceneRef}/>
@@ -104,6 +117,8 @@ const Game = () => {
                     <p className="ml-auto">Odlaw</p>
                 </MenuItem>
             </ContextMenu>
+
+            {gameFinished ? <Leaderboard /> : null}
         </div>
     )
 }
