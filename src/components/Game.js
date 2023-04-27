@@ -79,7 +79,12 @@ const Game = () => {
     return(
         <div className="flex flex-col place-items-center">
             <ContextMenuTrigger mouseButton={0} id="wally-context">
-                <img className="wallyImage" src="/images/scene.jpg" alt="scene" ref={sceneRef}/>
+                <div className="relative">
+                    <img className="wallyImage" src="/images/scene.jpg" alt="scene" ref={sceneRef}/>
+                    {foundTracker.wally ? <div className="absolute wallyLocation"></div> : null}
+                    {foundTracker.wizard ? <div className="absolute wizardLocation"></div> : null}
+                    {foundTracker.odlaw ? <div className="absolute odlawLocation"></div> : null}
+                </div>
             </ContextMenuTrigger>
 
             <ContextMenu id="wally-context" className="flex flex-col border-4 border-black rounded-xl bg-white p-2">

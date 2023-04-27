@@ -6,3 +6,27 @@
     width: 1920px;
     height: 1080px;
 }
+
+.wallyLocation{
+    top: 750px;
+    left: 1605px;
+    height: 100px;
+    width: 75px;
+    border: 5px solid black;
+}
+
+.wizardLocation{
+    top: 775px;
+    left: 110px;
+    height: 100px;
+    width: 75px;
+    border: 5px solid black;
+}
+
+.odlawLocation{
+    top: 665px;
+    left: 585px;
+    height: 50px;
+    width: 50px;
+    border: 5px solid black;
+}
