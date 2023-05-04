@@ -10,7 +10,7 @@ const Submit = (props) => {
             <form onSubmit={props.addScore} className="flex flex-col items-center text-2xl gap-3">
                 <label htmlFor="playerName">Enter your Name:</label>
                 <input type="text" name="playerName" id="playerName" className="border-4 border-black rounded-xl p-2"/>
-                <button type="submit">Submit</button>
+                <button className="border-2 border-black rounded-xl p-1 hover:bg-gray-200" type="submit">Submit</button>
             </form>
         </div>
     )

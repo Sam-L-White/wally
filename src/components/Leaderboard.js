@@ -53,9 +53,9 @@ const Leaderboard = (props) => {
         <div className="flex flex-col items-center overflow-hidden">
             {scoreAdded ? 
 
-            <div className="fixed top-1/4 bg-white border-2 border-black h-2/4 w-2/4 flex flex-col items-center gap-10 p-6 overflow-auto">
+            <div className="fixed top-1/4 bg-white border-4 rounded-xl border-black h-2/4 w-2/4 flex flex-col items-center gap-10 p-6 overflow-scroll noScrollbar">
                 <h1 className="text-6xl">Leaderboard</h1>
-                <div className="flex flex-col gap-2 text-3xl">
+                <div className="flex flex-col gap-2 text-3xl border-black border-4 p-4 rounded-xl">
                     {scores.map(score => {
                         return(
                             <div className="flex flex-row gap-32">

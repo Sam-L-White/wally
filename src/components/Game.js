@@ -102,12 +102,12 @@ const Game = () => {
 
 
     return(
-        <div className="flex flex-col place-items-center">
-            <Timer timerActive={timerActive} hours={hours} minutes={minutes} seconds={seconds} milliseconds={milliseconds}/>
+        <div className="flex flex-col place-items-center gap-4 mt-5">
+            <h1 className="text-6xl text-white">Where's Wally?</h1>
 
             <ContextMenuTrigger mouseButton={0} id="wally-context">
                 <div className="relative">
-                    <img className="wallyImage" src="/images/scene.jpg" alt="scene" ref={sceneRef}/>
+                    <img className="wallyImage rounded-xl" src="/images/scene.jpg" alt="scene" ref={sceneRef}/>
                     {foundTracker.wally ? <div className="absolute wallyLocation"></div> : null}
                     {foundTracker.wizard ? <div className="absolute wizardLocation"></div> : null}
                     {foundTracker.odlaw ? <div className="absolute odlawLocation"></div> : null}
@@ -133,6 +133,8 @@ const Game = () => {
             </ContextMenu>
 
             {gameFinished ? <Leaderboard hours={hours} minutes={minutes} seconds={seconds} milliseconds={milliseconds}/> : null}
+
+            <Timer timerActive={timerActive} hours={hours} minutes={minutes} seconds={seconds} milliseconds={milliseconds}/>
         </div>
     )
 }

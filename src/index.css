@@ -30,3 +30,12 @@
     width: 50px;
     border: 5px solid black;
 }
+
+.noScrollbar{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.noScrollbar::-webkit-scrollbar {
+    display: none;
+  }
