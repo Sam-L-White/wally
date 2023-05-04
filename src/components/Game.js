@@ -19,6 +19,20 @@ const Game = () => {
     })
     const [timerActive, setTimerActive] = useState(true)
     const [gameFinished, setGameFinished] = useState(false)
+    const [time, setTime] = useState(0)
+
+    useEffect(() => {
+        let intervalId
+        if (timerActive) {
+        intervalId = setInterval(() => setTime(time + 1), 10)
+        }
+        return () => clearInterval(intervalId)
+    }, [timerActive, time])
+
+    const hours = Math.floor(time / 360000);
+    const minutes = Math.floor((time % 360000) / 6000)
+    const seconds = Math.floor((time % 6000) / 100)
+    const milliseconds = time % 100
 
     async function getCoordinates(db) {
         const coordinatesCol = collection(db, 'coordinates')
@@ -89,7 +103,7 @@ const Game = () => {
 
     return(
         <div className="flex flex-col place-items-center">
-            <Timer timerActive={timerActive}/>
+            <Timer timerActive={timerActive} hours={hours} minutes={minutes} seconds={seconds} milliseconds={milliseconds}/>
 
             <ContextMenuTrigger mouseButton={0} id="wally-context">
                 <div className="relative">
@@ -118,7 +132,7 @@ const Game = () => {
                 </MenuItem>
             </ContextMenu>
 
-            {gameFinished ? <Leaderboard /> : null}
+            {gameFinished ? <Leaderboard hours={hours} minutes={minutes} seconds={seconds} milliseconds={milliseconds}/> : null}
         </div>
     )
 }
